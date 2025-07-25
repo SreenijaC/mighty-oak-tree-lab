@@ -9,6 +9,64 @@ public class App {
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        // good example 1: basic binary tree with left and right children
+        Squirrel cheeks = new Squirrel("Cheeks");
+        Squirrel squeaks = new Squirrel("Squeaks");
+        Squirrel fluffybutt = new Squirrel("Mr. Fluffy Butt");
+
+        Node root = new Node(cheeks);
+        Node leftChild = new Node(squeaks);
+        Node rightChild = new Node(fluffybutt);
+
+        root.set_left(leftChild);
+        root.set_right(rightChild);
+
+        System.out.println("Root: " + root.getData().getName());
+        System.out.println("Left: " + root.left().getData().getName());
+        System.out.println("Right: " + root.right().getData().getName());
+
+        // good example 2: deeper tree structure (adding another level)
+        Squirrel nutty = new Squirrel("Nutty");
+        Squirrel puffy = new Squirrel("Puffy");
+
+        Node leftLeft = new Node(nutty);
+        Node rightRight = new Node(puffy);
+
+        leftChild.set_left(leftLeft);
+        rightChild.set_right(rightRight);
+
+        System.out.println("Left->Left: " + root.left().left().getData().getName());
+        System.out.println("Right->Right: " + root.right().right().getData().getName());
+
+        // edge case 1: create a node with null data
+        Node nullNode = new Node(null);
+        if (nullNode.getData() == null) {
+            System.out.println("nullNode has no squirrel.");
+        } else {
+            System.out.println("nullNode: " + nullNode.getData().getName());
+        }
+
+        // edge case 2: node with no children (leaf node)
+        Node solo = new Node(new Squirrel("Solo"));
+        System.out.println("Solo node: " + solo.getData().getName());
+        System.out.println("Solo.left: " + solo.left());
+        System.out.println("Solo.right: " + solo.right());
+
+        // edge case 3: overwriting a child
+        Squirrel replace = new Squirrel("Replaced");
+        Node replaceNode = new Node(replace);
+        root.set_left(replaceNode);
+        System.out.println("New Left: " + root.left().getData().getName());
+
+        // edge case 4: trying to traverse from null
+        Node maybeNull = Math.random() > 0.5 ? new Node(new Squirrel("Random")) : null;
+        if (maybeNull == null) {
+            System.out.println("can't call left() or right() on a null node");
+        } else {
+            System.out.println(maybeNull.left());
+        }
+
+        // final tree check
+        System.out.println("Root still: " + root.getData().getName());
     }
 }
