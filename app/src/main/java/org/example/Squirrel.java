@@ -1,5 +1,6 @@
 package org.example;
 
+    // class to represent each squirrel with name
 public class Squirrel {
     private String name;
 

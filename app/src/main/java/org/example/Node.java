@@ -1,38 +1,40 @@
 package org.example;
 
-public class Node {
-    private Squirrel data;
-    private Node left;
-    private Node right;
+//  class represents one node in binary tree
+public class Node<T> {
+    private T data;
+    private Node<T> left;
+    private Node<T> right;
 
-    public Node(Squirrel data) {
+    // constructor to store squirrel object when node created
+    public Node(T data) {
         this.data = data;
-        this.left = null;
-        this.right = null;
+        this.left = null; // no left child initially
+        this.right = null; // no right child initially
     }
 
-    // sets the left child of the node
-    public void set_left(Node node) {
+    // attaches new node to left of current node
+    public void set_left(Node<T> node) {
         this.left = node;
     }
 
-    // sets the right child of the node
-    public void set_right(Node node) {
+    // attaches new node to current node' right
+    public void set_right(Node<T> node) {
         this.right = node;
     }
 
-    // returns the left child node
-    public Node left() {
+    // returns left child node if it exists
+    public Node<T> left() {
         return this.left;
     }
 
-    // returns the right child node
-    public Node right() {
+    // returns right child node if it exists
+    public Node<T> right() {
         return this.right;
     }
 
-    // returns the squirrel object stored in this node
-    public Squirrel getData() {
+    // accessing  actual object stored in the node 
+    public T getData() {
         return this.data;
     }
 }
